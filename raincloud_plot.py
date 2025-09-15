@@ -200,86 +200,71 @@ def plot_raincloud(
     return fig, ax  # Return the figure and axis objects
 
 
-def test_raincloud_plot(design: str = "1way"):
+def generate_1way_data(n_samples: int = 100, seed: int = 42) -> pd.DataFrame:
     """
-    Test the raincloud plot function with different experimental designs.
-
-    Parameters:
-    - design (str): The type of design to test. Options are:
-        - "1way": One-way design
-        - "2way": Two-way design
+    Generate synthetic one-way design data (dataframe with condition and score column)
     """
-    if design == "1way":
-        # Generate synthetic data for one-way design
-        np.random.seed(42)
-        n_samples = 100
-        conditions = np.random.choice(["Control", "Experimental"], size=n_samples)
+    np.random.seed(seed)
+    conditions = np.random.choice(["Control", "Experimental"], size=n_samples)
 
-        # Generate scores based on the condition for each row
-        scores = []
-        for condition in conditions:
-            if condition == "Control":
-                scores.append(np.random.normal(loc=20, scale=5))
-            elif condition == "Experimental":
-                scores.append(np.random.normal(loc=25, scale=5))
+    scores = []
+    for condition in conditions:
+        if condition == "Control":
+            scores.append(np.random.normal(loc=20, scale=5))
+        else:  # Experimental
+            scores.append(np.random.normal(loc=25, scale=5))
 
-        # Create the DataFrame
-        df = pd.DataFrame({
-            "Condition": conditions,
-            "Score": scores
-        })
+    return pd.DataFrame({
+        "Condition": conditions,
+        "Score": scores
+    })
 
-        # Plot the raincloud
-        plot_raincloud(df, y="Score", x1="Condition",
-                       x_label="Condition", y_label="Score",
-                       title="One-Way Design",
-                       figsize=(10, 6),
-                       save_path="output/raincloud_plot_1way.pdf")
 
-    elif design == "2way":
-        # Generate synthetic data for two-way design
-        np.random.seed(42)
-        n_samples = 200
-        factor1_levels = ["Low", "High"]
-        factor2_levels = ["Type A", "Type B"]
-        conds = list(product(factor1_levels, factor2_levels))
-        n_conditions = len(conds)
-        assignments = [conds[i % n_conditions] for i in range(n_samples)]
+def generate_2way_data(n_samples: int = 200, seed: int = 42) -> pd.DataFrame:
+    """
+    Generate synthetic two-way design data (dataframe with factor1, factor2 and score column)
+    """
+    np.random.seed(seed)
+    factor1_levels = ["Low", "High"]
+    factor2_levels = ["Type A", "Type B"]
+    conds = list(product(factor1_levels, factor2_levels))
+    n_conditions = len(conds)
 
-        # Generate scores based on the condition for each row
-        scores = []
-        for factor1, factor2 in assignments:
-            if factor1 == "Low" and factor2 == "Type A":
-                scores.append(np.random.normal(loc=15, scale=4))
-            elif factor1 == "Low" and factor2 == "Type B":
-                scores.append(np.random.normal(loc=18, scale=4))
-            elif factor1 == "High" and factor2 == "Type A":
-                scores.append(np.random.normal(loc=22, scale=4))
-            elif factor1 == "High" and factor2 == "Type B":
-                scores.append(np.random.normal(loc=15, scale=4))
+    assignments = [conds[i % n_conditions] for i in range(n_samples)]
+    scores = []
 
-        # Create the DataFrame
-        df = pd.DataFrame({
-            "Factor1": [a[0] for a in assignments],
-            "Factor2": [a[1] for a in assignments],
-            "Score": scores
-        })
+    for factor1, factor2 in assignments:
+        if factor1 == "Low" and factor2 == "Type A":
+            scores.append(np.random.normal(loc=15, scale=4))
+        elif factor1 == "Low" and factor2 == "Type B":
+            scores.append(np.random.normal(loc=18, scale=4))
+        elif factor1 == "High" and factor2 == "Type A":
+            scores.append(np.random.normal(loc=22, scale=4))
+        else:  # High + Type B
+            scores.append(np.random.normal(loc=15, scale=4))
 
-        # Plot the raincloud
-        plot_raincloud(df, y="Score", x1="Factor1", x2="Factor2",
-                       y_label="Score",
-                       title="Two-Way Design",
-                       figsize=(12, 6),
-                       x1_order=["Low", "High"],
-                       x2_order=["Type A", "Type B"],
-                       save_path="output/raincloud_plot_2way.pdf")
+    return pd.DataFrame({
+        "Factor1": [a[0] for a in assignments],
+        "Factor2": [a[1] for a in assignments],
+        "Score": scores
+    })
 
-    else:
-        raise ValueError("Invalid design type. Choose from '1way' or '2way'.")
 
-# Example usage:
 if __name__ == "__main__":
-    # Test the function with different designs
-    test_raincloud_plot("1way")      # Test one-way design
-    test_raincloud_plot("2way")      # Test two-way design
+    # Example 1: One-way design
+    df1 = generate_1way_data()
+    plot_raincloud(df1, y="Score", x1="Condition",
+                   x_label="Condition", y_label="Score",
+                   figsize=(10, 6),
+                   save_path="output/raincloud_plot_1way.pdf")
+
+    # Example 2: Two-way design
+    df2 = generate_2way_data()
+    plot_raincloud(df2, y="Score", x1="Factor1", x2="Factor2",
+                   y_label="Score",
+                   figsize=(12, 6),
+                   x1_order=["Low", "High"],
+                   x2_order=["Type A", "Type B"],
+                   colors=["#f4a582", "#67001f", "#92c5de", "#053061"],
+                   save_path="output/raincloud_plot_2way.pdf")
 
