@@ -153,7 +153,7 @@ def plot_correlation(
     # Save if path provided
     if save_path:
         os.makedirs(os.path.dirname(save_path) or ".", exist_ok=True)
-        plt.savefig(save_path, dpi=300, bbox_inches='tight')
+        plt.savefig(save_path, dpi=600, bbox_inches='tight')
 
     plt.show()
     # Always return (fig, ax) for consistent API

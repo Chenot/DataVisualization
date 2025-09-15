@@ -184,9 +184,9 @@ def plot_likert(data: pd.DataFrame,
     if save_path:
         os.makedirs(os.path.dirname(save_path) or ".", exist_ok=True)
         try:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight', bbox_extra_artists=(legend,))
+            plt.savefig(save_path, dpi=600, bbox_inches='tight', bbox_extra_artists=(legend,))
         except Exception:
-            plt.savefig(save_path, dpi=300, bbox_inches='tight')
+            plt.savefig(save_path, dpi=600, bbox_inches='tight')
 
     plt.show()
     return fig, ax
