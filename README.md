@@ -1,4 +1,4 @@
-# 📊 Open Science Visualization Toolkit
+# 📊 Data Visualization Toolkit
 
 **Author:** Quentin Chenot  
 **License:** MIT  
@@ -18,8 +18,8 @@ All functions are implemented in **Python**, rely on standard scientific librari
 ## ✨ Features
 
 - 📈 **Correlation plots** with regression lines, marginal densities, and annotated *r, r², p-values*  
+- 🌧 **Raincloud plots** (half-violin + boxplot + jitter) with optional ANOVA results 
 - 📝 **Likert plots** for visualizing questionnaire data on diverging scales  
-- 🌧 **Raincloud plots** (half-violin + boxplot + jitter) with optional ANOVA results  
 - 💾 Export figures (PDF, PNG, etc.)
 ---
 
@@ -59,7 +59,7 @@ import seaborn as sns
 df = sns.load_dataset("mpg").dropna(subset=["horsepower", "mpg"])
 plot_correlation(df, "horsepower", "mpg",
                  x_label="Horsepower", y_label="Miles per Gallon",
-                 save_path="output/correlation_plot.png")
+                 save_path="output/correlation_plot.pdg")
 ```
 
 More examples are included in each script’s `__main__` block.
