@@ -20,7 +20,7 @@ def plot_correlation(
     y_label: Optional[str] = None,
     show_density: bool = True,
     point_color: str = 'black',
-    point_alpha: float = 0.8,
+    point_alpha: float = 0.7,
     point_size: int = 30,
     point_marker: str = 'o',
     line_color: str = 'black',
@@ -169,5 +169,5 @@ if __name__ == "__main__":
                      y_label='Miles per Gallon',
                      show_density=True,
                      cor_pos='top-right',
-                     figsize=(10,6),
+                     figsize=(8,6),
                      save_path='output/correlation_plot.pdf')
