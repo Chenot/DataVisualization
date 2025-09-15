@@ -226,5 +226,4 @@ if __name__ == "__main__":
                 cmap='coolwarm',
                 cmap_reverse=True,
                 save_path="output/likert_plot.pdf",
-                save_percents_path="output/likert_percents.csv",
                 figsize=(10, 6))
