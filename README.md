@@ -53,13 +53,14 @@ Minimal requirements:
 Each script is standalone and can be used independently. Example:
 
 ```python
+# Hypothesis 1 (Fig. 1). As the horse power increase, the miles per gallon will decrease
 from correlation_plot import plot_correlation
 import seaborn as sns
 
 df = sns.load_dataset("mpg").dropna(subset=["horsepower", "mpg"])
-plot_correlation(df, "horsepower", "mpg",
+plot_correlation(df, x="horsepower", y="mpg",
                  x_label="Horsepower", y_label="Miles per Gallon",
-                 save_path="output/correlation_plot.pdg")
+                 save_path="output/correlation_plot.pdf")
 ```
 
 More examples are included in each script’s `__main__` block.
