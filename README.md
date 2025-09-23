@@ -56,11 +56,13 @@ Each script is standalone and can be used independently. Example:
 # Hypothesis 1 (Fig. 1). As the horse power increase, the miles per gallon will decrease
 from correlation_plot import plot_correlation
 import seaborn as sns
+import os
 
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 df = sns.load_dataset("mpg").dropna(subset=["horsepower", "mpg"])
 plot_correlation(df, x="horsepower", y="mpg",
                  x_label="Horsepower", y_label="Miles per Gallon",
-                 save_path="output/correlation_plot.pdf")
+                 save_path=os.path.join(base_dir, "figures", "correlation_plot.pdf"))
 ```
 
 More examples are included in each script’s `__main__` block.
@@ -70,16 +72,16 @@ More examples are included in each script’s `__main__` block.
 ## 📊 Example Outputs
 
 ### Correlation Plot
-![Correlation Plot](output/correlation_plot.png)
+![Correlation Plot](figures/correlation_plot.png)
 
 ### Raincloud Plot (One-Way)
-![Raincloud One-Way](output/raincloud_plot_1way.png)
+![Raincloud One-Way](figures/raincloud_plot_1way.png)
 
 ### Raincloud Plot (Two-Way)
-![Raincloud Two-Way](output/raincloud_plot_2way.png)
+![Raincloud Two-Way](figures/raincloud_plot_2way.png)
 
 ### Likert Plot
-![Likert Plot](output/likert_plot.png)
+![Likert Plot](figures/likert_plot.png)
 
 ---
 

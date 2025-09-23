@@ -194,6 +194,8 @@ def plot_likert(data: pd.DataFrame,
 
 # Example usage: convert your wide table (questions in columns) to long format and call plot_likert
 if __name__ == "__main__":
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    
     df = pd.DataFrame({
         'Participant': [1, 2, 3, 4, 5],
         'We are all': [5, 4, 3, 2, 1],
@@ -225,5 +227,5 @@ if __name__ == "__main__":
                 category_order=["Strongly disagree", "Disagree", "Neutral", "Agree", "Strongly agree"],
                 cmap='coolwarm',
                 cmap_reverse=True,
-                save_path="output/likert_plot.pdf",
+                save_path=os.path.join(base_dir, "figures", "likert_plot.pdf"),
                 figsize=(10, 6))

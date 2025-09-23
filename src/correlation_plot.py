@@ -161,13 +161,18 @@ def plot_correlation(
 
 # Example usage
 if __name__ == "__main__":
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     df = sns.load_dataset('mpg').dropna(subset=['horsepower', 'mpg'])
-    plot_correlation(df,
-                     'horsepower',
-                     'mpg',
-                     x_label='Horsepower',
-                     y_label='Miles per Gallon',
-                     show_density=True,
-                     cor_pos='top-right',
-                     figsize=(8,6),
-                     save_path='output/correlation_plot.pdf')
+
+    plot_correlation(
+        df,
+        'horsepower',
+        'mpg',
+        x_label='Horsepower',
+        y_label='Miles per Gallon',
+        show_density=True,
+        cor_pos='top-right',
+        figsize=(8, 6),
+        save_path=os.path.join(base_dir, "figures", "correlation_plot.pdf")
+    )

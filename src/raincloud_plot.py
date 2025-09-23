@@ -251,12 +251,14 @@ def generate_2way_data(n_samples: int = 200, seed: int = 42) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     # Example 1: One-way design
     df1 = generate_1way_data()
     plot_raincloud(df1, y="Score", x1="Condition",
                    x_label="Condition", y_label="Score",
                    figsize=(10, 6),
-                   save_path="output/raincloud_plot_1way.pdf")
+                   save_path=os.path.join(base_dir, "figures", "raincloud_plot_1way.pdf"))
 
     # Example 2: Two-way design
     df2 = generate_2way_data()
@@ -266,5 +268,6 @@ if __name__ == "__main__":
                    x1_order=["Low", "High"],
                    x2_order=["Type A", "Type B"],
                    colors=["#f4a582", "#67001f", "#92c5de", "#053061"],
-                   save_path="output/raincloud_plot_2way.pdf")
+                   save_path=os.path.join(base_dir, "figures", "raincloud_plot_2way.pdf"))
+
 
