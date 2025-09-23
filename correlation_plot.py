@@ -1,6 +1,6 @@
 # Correlation Plot Function
 # Author: Quentin Chenot
-# License: MIT
+# License: CCI
 # Description: A flexible function for creating scatter plots with correlation and density.
 # Version: 1.1
 # Date: 15/09/2025 [DD/MM/YYYY]

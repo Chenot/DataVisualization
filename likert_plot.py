@@ -1,6 +1,6 @@
 # Likert Plot Function
 # Author: Quentin Chenot
-# License: MIT
+# License: CCI
 # Description: A flexible function for creating data visualization from questionnaires using Likert scales.
 # Version: 1.0
 # Date: 15/09/2025 [DD/MM/YYYY]
