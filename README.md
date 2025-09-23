@@ -20,7 +20,7 @@ All functions are implemented in **Python**, rely on standard scientific librari
 - 📈 **Correlation plots** with regression lines, marginal densities, and annotated *r, r², p-values*  
 - 🌧 **Raincloud plots** (half-violin + boxplot + jitter) with optional ANOVA results 
 - 📝 **Likert plots** for visualizing questionnaire data on diverging scales  
-- 💾 Export figures in high quality (PDF, PNG, etc.)
+- 💾 Export figures (PDF, PNG, etc.)
 ---
 
 ## 📦 Installation
