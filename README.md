@@ -60,9 +60,14 @@ import os
 
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 df = sns.load_dataset("mpg").dropna(subset=["horsepower", "mpg"])
-plot_correlation(df, x="horsepower", y="mpg",
-                 x_label="Horsepower", y_label="Miles per Gallon",
-                 save_path=os.path.join(base_dir, "figures", "correlation_plot.pdf"))
+plot_correlation(
+    df,
+    x="horsepower",
+    y="mpg",
+    x_label="Horsepower",
+    y_label="Miles per Gallon",
+    save_path=os.path.join(base_dir, "figures", "correlation_plot.pdf")
+)
 ```
 
 More examples are included in each script’s `__main__` block.
